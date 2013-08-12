@@ -121,19 +121,9 @@
         __fest_log_error(e.message + "6");
     }
     try {
-        __fest_buf += (__fest_escapeHTML(json.s))
-    } catch (e) {
-        __fest_log_error(e.message + "7");
-    }
-    try {
-        __fest_buf += (__fest_escapeHTML(json.value))
-    } catch (e) {
-        __fest_log_error(e.message + "8");
-    }
-    try {
         __fest_buf += (__fest_escapeHTML(json.undefined))
     } catch (e) {
-        __fest_log_error(e.message + "9");
+        __fest_log_error(e.message + "7");
     }
     __fest_to = __fest_chunks.length;
     if (__fest_to) {
