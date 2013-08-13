@@ -32,12 +32,12 @@ $ npm install fest
 ```bash
  ~$ fest/bin/fest-render myproject/basic.xml
 ```
-такая команда выведет «Hello, John».	
+такая команда выведет « **Hello, John** ».<br/><br/>	
 
 ###2. Воспользоваться API:
 Используем тот же шаблон, лежащий, по прежнему, в **~/myproject/example.xml**. Создадим в папке проекта файл **compile.js** и вставим в него такой код:
 
-```xml
+```javascript
 var fest = require('fest'); 
 //подключили модуль fest
 console.log(fest.render('basic.xml'));
@@ -50,7 +50,7 @@ console.log(fest.render('basic.xml'));
 ~/myproject$ node compile.js
 ```
 
-Эта команда также выведет «Hello, John».	
+Эта команда также выведет « **Hello, John** ».<br/><br/>	
 
 Ознакомиться с подробным описанием команд компиляции, рендеринга и сборки проекта можно здесь, API [здесь](#api).
 
@@ -67,7 +67,7 @@ console.log(fest.render('basic.xml'));
 <!-- получили значение переменной username -->
 ```
 
-Скомпилированный шаблон выведет «John».<br/>
+Скомпилированный шаблон выведет « **John** ».<br/><br/>
 Когда fest встречает в шаблоне **fest:set** (объявление переменной шаблона), то он «запоминает» ее. Встречая **fest:get**, шаблонизатор подставляет вместо него значение, объявленное в **fest:set** с таким же атрибутом name. <br/>
 При получении значения переменной в нее можно передать параметр:
 
@@ -78,7 +78,7 @@ console.log(fest.render('basic.xml'));
 <fest:get name="greeting">{username: "John"}</fest:get>
 ```
 
-Скомпилированный шаблон выведет «Hello, John». 
+Скомпилированный шаблон выведет « **Hello, John** ». <br/><br/>
 
 **fest:space** отвечает за вставку пробела. В объявлении переменной обращение к параметрам происходит с помощью объекта params. Чтобы вывести значение любого выражения, используйте fest:value. 
 
@@ -141,7 +141,7 @@ template.xml:
 render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 ```
 
-Скомпилированный шаблон выведет «hey, dude». Теперь усложним шаблон:
+Скомпилированный шаблон выведет « **hey, dude** ».<br/><br/> Теперь усложним шаблон:
 
 ```xml
 <fest:set name="index">
@@ -210,7 +210,7 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 </fest:each>
 ```
 
-Скомпилированный шаблон выведет «foo=bar».
+Скомпилированный шаблон выведет « **foo=bar** ». <br/><br/>
 
 Обращение к итерируемому элементу:
 
@@ -230,10 +230,10 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 </fest:for>
 ```
 
-Выведет «bcd»
+Выведет « **bcd** » <br/><br/>
 
 ###fest:if
-Условный оператор. Выводит блок шаблона, если выражение в атрибуте test истинно.
+Условный оператор. Выводит блок шаблона, если выражение в атрибуте **test** истинно.
 
 ```xml
 <fest:if test="true">
@@ -250,7 +250,7 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 Кроме условного оператора в fest есть оператор ветвления [**fest:choose**](#festchoose)
 
 ###fest:include
-Вставка содержимого другого шаблона с заданным контекстом. В атрибуте context указывается контекст, src — путь до вставляемого шаблона.
+Вставка содержимого другого шаблона с заданным контекстом. В атрибуте **context** указывается контекст, src — путь до вставляемого шаблона.
 
 ```xml
 <fest:script>json.list = ['a', 'b', 'c'];</fest:script>
@@ -277,7 +277,7 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 <fest:space/>
 <fest:text value="\"/>
 ```
-Выведет «a \\ »
+Выведет « **a \\** » <br/><br/>
 
 ##Работа с HTML и JS
 
@@ -285,7 +285,7 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 Объявление doctype страницы
 
 ```xml
-<fest:doctype>html</fest:doctype>
+<fest:doctype> html </fest:doctype>
 ```
 
 ###fest:cdata
@@ -299,79 +299,57 @@ render('template.xml', { 'greeting': 'hey, ', 'name': 'dude' })
 </script>
 ```
 
-Выведет:
-
-```xml
-<script><![CDATA[alert ("2" < 3);]]></script>
-```
+Выведет « ``<script><![CDATA[alert ("2" < 3);]]></script>`` » <br/><br/>
 
 ###fest:value
 Выводит значение выражения. <br/>
 Есть 4 режима: html (по умолчанию), текст, js, json. <br/>
-HTML:
+####HTML:
 
 ```xml
 <fest:value>json.value</fest:value>
 ```
 
-Выведет:
-
-```
-lt;script/&gt;
-```
+Выведет « ```&lt;script/&gt;``` » <br/><br/>
 
 По умолчанию **fest:value** экранирует спецсимволы &,<,>,". Если надо отключить экранирование, используется атрибут **output**:
-**output="text"** — ничего не экранирует:
+
+####output="text" — ничего не экранирует:
 
 ```xml
 <fest:value output="text"><![CDATA["<script/>"]]></fest:value>
 ```
 
-Вернет:
+Выведет « **<script/>** » <br/><br/>
 
-```
-<script/>
-```
 
-**output="js"** — экранирует спецсимволы javascript:
+####output="js" — экранирует спецсимволы javascript:
 
 ```xml
 <fest:value output="js"><![CDATA["<script/>"]]></fest:value>
 ```
 
-Выведет:
+Выведет « **\\u003Cscript\\/\\u003E** » <br/><br/>
 
-```
-\\u003Cscript\\/\\u003E
-```
-
-**output="json"** - экранирует < и > и помещает всё выражение в кавычки:
+####output="json" - экранирует < и > и помещает всё выражение в кавычки:
 
 ```xml
 <fest:value output="json"><![CDATA["<script/>"]]></fest:value>
 ```
 
-Выведет:
-
-```
-"\\u003C\/script\\u003E"
-```
+Выведет « **"\\u003C\/script\\u003E"** » <br/><br/>
 
 ###fest:var
-Устанавливает js-переменную, название переменной задается в атрибуте name:
+Устанавливает js-переменную, название переменной задается в атрибуте **name**:
 
 ```xml
 <fest:var name="question">Ultimate Question of Life, The Universe, and 	Everything</fest:var>
 <fest:value>question</fest:value>
 ```
 
-Выведет:
+Выведет « **Ultimate Question of Life, The Universe, and Everything** » <br/><br/>
 
-```
-Ultimate Question of Life, The Universe, and Everything
-```
-
-Если нужно объявить js-переменную со значением, зависящим от другой переменной, используйте атрибут select:
+Если нужно объявить js-переменную со значением, зависящим от другой переменной, используйте атрибут **select**:
 
 ```xml
 <fest:var name="answer" select="question.length - 13" />
@@ -404,11 +382,7 @@ script.js:
 var include_script = true + '!';
 ```
 
-Выведет:
-
-```
-"true""true!"
-```
+Выведет « **"true""true!"** » <br/><br/>
 
 ###fest:attributes, fest:attribute
 Добавляет атрибуты к родительскому тегу. Все **fest:attribute** должны быть внутри блока **fest:attributes**, который должен быть первым внутри тега.<br/>
@@ -423,11 +397,7 @@ var include_script = true + '!';
 </a>
 ```
 
-Выведет:
-
-```xml
-<a href="http://mail.ru">Some link</a>
-```
+Выведет « ```<a href="http://mail.ru">Some link</a>``` » <br/><br/>
 
 Тоже самое можно сделать с помощью сокращенной записи:
 
@@ -472,11 +442,7 @@ var include_script = true + '!';
 </fest:element>
 ```
 
-Выведет:
-
-```xml
-<table>fest code</table><div>fest code</div>
-```
+Выведет « ```<table>fest code</table><div>fest code</div>``` » <br/><br/>
 
 ###fest:insert
 Вставка файла напрямую в шаблон. С помощью **fest:insert** можно вставить файл со стилями css или с javascript кодом. 
@@ -495,14 +461,14 @@ var include_script = true + '!';
 
 **compile** преобразует xml-шаблон (компилирует) в запускаемый js-скрипт,<br/>
 **render** компилирует шаблон и запускает созданный скрипт,<br/>
-**build** собирает проект (компилирует все шаблоны в указанной директории).<br/>
+**build** собирает проект (компилирует все шаблоны в указанной директории).<br/><br/>
 В этом разделе описаны команды терминала. API [дальше](#api).<br/>
 
 ###compile()
 Компилирует шаблон (преобразует xml в javascript), не подставляет значения переменных шаблона. Использование: 
 
 ```bash
-~/fest/bin/fest-compile [--out=...] [--wrapper=...] [--translate=...] template.xml
+$ ~/fest/bin/fest-compile [--out=...] [--wrapper=...] [--translate=...] template.xml
 ```
 Где:
 
@@ -518,7 +484,7 @@ var include_script = true + '!';
 Компилирует шаблон, подставляет значения переменных шаблона, контекст json и запускает скомпилированный шаблон. Использование:
 
 ```bash
-~/fest/bin/fest-render [--json=...] [--out=...] filename.xml
+$ ~/fest/bin/fest-render [--json=...] [--out=...] filename.xml
 ```
 Где:<br/>
 **--json** — путь до json-файла<br/>
@@ -531,7 +497,7 @@ var include_script = true + '!';
 Компилирует шаблоны в указанной директории. Использование:
 
 ```bash
-fest-build --dir=... [--out=...] [--wrapper=...] [--exclude=...] 
+$ ~/fest/bin/fest-build --dir=... [--out=...] [--wrapper=...] [--exclude=...] 
 ```
 
 Где:<br/>
