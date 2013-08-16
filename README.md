@@ -80,7 +80,18 @@ console.log(fest.render('basic.xml'));
 
 Скомпилированный шаблон выведет « **Hello, John** ». <br/><br/>
 
-**fest:space** отвечает за вставку пробела. В объявлении переменной обращение к параметрам происходит с помощью объекта params. Чтобы вывести значение любого выражения, используйте fest:value. 
+**fest:space** отвечает за вставку пробела. В объявлении переменной обращение к параметрам происходит с помощью объекта params. Чтобы вывести значение любого выражения, используйте fest:value. <br/>
+
+Для вывода блока, имя которого задано выражением, нужно заключить выражение в фигурные скобки:
+
+```xml
+<fest:set name="block">
+	Alexander.
+</fest:set>
+<fest:get name="bl{(true)?'o':'a'}ck"/>
+```
+
+Скомпилированный шаблон выведет « **Hello, John** ». <br/><br/>
 
 ###fest:param, fest:params
 Кроме простых параметров можно передавать куски xml-кода с помощью **fest:param** :
@@ -405,6 +416,23 @@ var include_script = true + '!';
 <a href="{json.href}">Some link</a>
 ```
 
+В **name** можно указывать выражение, заключив его в фигурные скобки. Значение атрибуту можно присваивать в **value**:
+
+```xml
+<div>
+	<fest:attributes>
+		<fest:attribute name="data-{(true)?'k':'i'}a{(true)?'t':'u'}a" value="abc{(true)?'d':'e'}">
+			_efg
+		</fest:attribute>
+		<fest:attribute name="{undefined.undefined}">
+			not_displays
+		</fest:attribute>
+	</fest:attributes>
+</div>
+```
+
+Выведет « ```<div data-kata="abcd_efg"></div>``` » <br/><br/>
+
 
 ##Остальное
 
@@ -428,21 +456,25 @@ var include_script = true + '!';
 ```
 
 ###fest:element
-Выводит тег с переменным именем. В атрибуте **select** указывается имя переменной
+Выводит тег с переменным именем. В атрибуте **name** в **{}** указывается выражение, которое соответствует имени тега. По умолчанию выводится **div**
 
 ```xml
+<fest:element name="span">login</fest:element>
 <fest:script>
     var variable = 'table';
 </fest:script>
-<fest:element select="variable">
+<fest:element name="{variable}">
     fest code
 </fest:element>
-<fest:element select="variable2">
+<fest:element name="d{(true)?'i':'a'}v">
     fest code
+</fest:element>
+<fest:element name="{variable2}">
+    div code
 </fest:element>
 ```
 
-Выведет « ```<table>fest code</table><div>fest code</div>``` » <br/><br/>
+Выведет « ```<span>login</span><table>fest code</table><div>fest code</div><div>div code</div>``` » <br/><br/>
 
 ###fest:insert
 Вставка файла напрямую в шаблон. С помощью **fest:insert** можно вставить файл со стилями css или с javascript кодом. 
