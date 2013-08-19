@@ -18,7 +18,7 @@ npm install fest
 </fest:template>
 ```
 
-Данные передаваемые в шаблон, доступны через переменную с именем, указанной в атрибуте `context_name` элемента `fest:template`:
+Данные передаваемые в шаблон, доступны через переменную с именем, указанным в атрибуте `context_name` элемента `fest:template`:
 
 ```xml
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
@@ -70,7 +70,7 @@ Hello,John!
 
 ### fest:value
 
-Служит для вывода значения JavaScript выражения. Поддерживаем 4 режима вывода: html (по умолчанию), текст, js, json.
+Служит для вывода значения JavaScript выражения. Поддерживаем 4 режима вывода: html (по умолчанию), text, js и json.
 
 ```xml
 <fest:script><![CDATA[
@@ -84,7 +84,7 @@ Hello,John!
 
 ### fest:var
 
-Устаналивает локальную JavaScript переменную:
+Устаналивает локальную JavaScript переменную.
 
 ```xml
 <fest:var name="question">Ultimate Question of Life, The Universe, and Everything</fest:value>
@@ -95,7 +95,7 @@ Hello,John!
 
 ### fest:text
 
-Вывод неформатированного текста:
+Выводит неформатированный текст.
 
 ```xml
 <fest:text>"Hello"</fest:text><!-- "Hello" -->
@@ -150,7 +150,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 <fest:get name="name">{'some': 'data'}</fest:get>
 ```
 
-С помощью `fest:param` можно передавать в блок XML-данные:
+С помощью `fest:param` можно передавать в блок XML-данные.
 
 ```xml
 <fest:get name="page">
@@ -177,7 +177,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 </fest:set>
 ```
 
-Внутри атрибута `name` можно использовать JavaScript выражения для вычисления имени блока во время выполнения. Значения выражений, заключенных в фигурные скобки, объединяются с примыкающим текстом. Помимо этого, можно воспользоваться атрибутом `select`.
+Внутри атрибута `name` можно использовать JavaScript выражения для вычисления имени блока во время выполнения. Значения выражений, заключенных в фигурные скобки, объединяются с примыкающим текстом. Помимо этого, можно использовать атрибут `select`.
 
 ```xml
 <fest:script>
@@ -191,7 +191,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:element
 
-Вывод HTML элемента с переменным именем:
+Выводит HTML элемент с переменным именем.
 
 ```xml
 <fest:element name="div" />
@@ -214,7 +214,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:attributes, fest:attribute
 
-Добавляет атрибуты к родительскому элементы. Все `fest:attribute` должны быть внутри блока `fest:attributes`, который должен быть первым внутри элемента.
+Добавляет атрибуты к родительскому элементы. Все `fest:attribute` должны быть внутри блока `fest:attributes`, который должен идти первым внутри элемента.
 
 ```xml
 <a>
@@ -232,6 +232,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 ```
 
 Имена атрибутов можно вычислять в момент исполнения шаблона:
+
 ```xml
 <div>
     <fest:attributes>
@@ -244,7 +245,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:each
 
-Итерация по объекту:
+Предоставляет механизм итерации по объекту.
 
 ```xml
 <fest:script>var obj = {"foo": "bar"}</fest:script>
@@ -258,7 +259,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:for
 
-Итерация по массиву или по числовому ряду:
+Выполняет итерацию по массиву или числовому ряду.
 
 ```xml
 <fest:script>json.items = ['a', 'b', 'c']</fest:script>
@@ -275,7 +276,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:if
 
-Условный оператор:
+Условный оператор.
 
 ```xml
 <fest:if test="true">
@@ -285,7 +286,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:choose, fest:when, fest:otherwise
 
-Ветвление. Если ни один `fest:when` не выполнен, будет выбрана ветвь `fest:otherwise`.
+Ветвление. Если ни у одного `fest:when` условие не выполнено, будет выбрана ветвь `fest:otherwise`.
 
 ```xml
 <fest:choose>
@@ -307,7 +308,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:cdata
 
-Выврдит блок CDATA:
+Служит для вывода блока CDATA.
 
 ```xml
 <script>
@@ -319,7 +320,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:comment
 
-HTML комментарий:
+Выводит HTML комментарий.
 
 ```xml
 <fest:comment>comment</fest:comment>
@@ -327,7 +328,7 @@ HTML комментарий:
 
 ### fest:doctype
 
-Объявление DOCTYPE страницы:
+Задает DOCTYPE генерируемой страницы.
 
 ```xml
 <fest:doctype>html</fest:doctype>
@@ -335,7 +336,7 @@ HTML комментарий:
 
 ### fest:script
 
-Выполняет произвольный JavaScript:
+Служит для выполнения произвольного JavaScript.
 
 ```xml
 <fest:script>
@@ -346,6 +347,7 @@ HTML комментарий:
 ```
 
 Содержимое `fest:script` можно загрузить из файла, указав в атрибуте `src` путь к нему.
+
 ```xml
 <fest:script src="script.js"/>
 ```
@@ -361,7 +363,7 @@ HTML комментарий:
 
 ### fest:insert
 
-Выводит содержимое файл:
+Выводит содержимое файла:
 
 ```xml
 <style type="text/css">
