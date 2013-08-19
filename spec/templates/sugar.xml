@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-	<fest:element name="d{(true)?'i'}"/>
+	<fest:script>
+		var name = 'Василий';
+	</fest:script>
+
+	Привет, {name}!
+
 </fest:template>
