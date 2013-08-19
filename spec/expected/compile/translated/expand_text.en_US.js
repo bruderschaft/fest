@@ -1,4 +1,4 @@
-;(function(){var x=Function('return this')();if(!x.fest)x.fest={};x.fest['spec/templates/sugar.en_US']=function(__fest_context) {
+;(function(){var x=Function('return this')();if(!x.fest)x.fest={};x.fest['spec/templates/expand_text.en_US']=function(__fest_context) {
     "use strict";
     var __fest_self = this,
         __fest_buf = "",
@@ -93,6 +93,11 @@
         return s;
     }
     var json = __fest_context;
+    try {
+        var name = 'Василий';
+    } catch (e) {
+        __fest_log_error(e.message);
+    }
     __fest_buf += ("Привет, {name}!");
     __fest_to = __fest_chunks.length;
     if (__fest_to) {
