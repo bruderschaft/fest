@@ -57,7 +57,7 @@ _Замечание: начальные и конечные пробелы в т
 
 hello.js
 ```javascript
-var fest = require('fest'); 
+var fest = require('fest');
 console.log(fest.render('hello.xml'), {name: 'John'});
 ```
 
@@ -111,7 +111,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ### fest:set
 
-Объявляет именованный подшаблон. Содержимое `fest:set` не будет выполнено до тех пор, пока не будет вызван блок с таким же имененем с помощью `fest:get`. 
+Объявляет именованный подшаблон. Содержимое `fest:set` не будет выполнено до тех пор, пока не будет вызван блок с таким же имененем с помощью `fest:get`.
 
 ```xml
 <fest:set name="name">John</fest:set>
@@ -177,7 +177,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 </fest:set>
 ```
 
-Если указать атрибут `select`, то выражение внутри него выполнится и результирующая строка будет именем блока.
+Внутри атрибута `name` можно использовать JavaScript выражения для вычисления имени блока во время выполнения. Значения выражений, заключенных в фигурные скобки, объединяются с примыкающим текстом. Помимо этого, можно воспользоваться атрибутом `select`.
 
 ```xml
 <fest:script>
@@ -186,6 +186,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 <fest:get select="name"/><!-- foo -->
 <fest:set name="foo">foo</fest:set>
 <fest:set name="bar">bar</fest:set>
+<fest:get name="b{true?'a':''}r"/><!-- bar -->
 ```
 
 ### fest:element
@@ -193,13 +194,14 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 Вывод HTML элемента с переменным именем:
 
 ```xml
+<fest:element name="div" />
 <fest:script>
     var variable = 'table';
 </fest:script>
 <fest:element select="variable">
     fest code
 </fest:element>
-<fest:element select="variable2">
+<fest:element name="{variable2}">
     fest code
 </fest:element>
 ```
@@ -207,7 +209,7 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 Результат:
 
 ```xml
-<table>fest code</table><div>fest code</div>
+<div></div><table>fest code</table><div>fest code</div>
 ```
 
 ### fest:attributes, fest:attribute
@@ -227,6 +229,15 @@ Hello,<fest:space/><fest:value>json.name</fest:value>!<!-- Hello, John! -->
 
 ```xml
 <a href="{json.href}">Some link</a>
+```
+
+Имена атрибутов можно вычислять в момент исполнения шаблона:
+```xml
+<div>
+    <fest:attributes>
+        <fest:attribute name="data-{json.name}" value="{json.value}" />
+    </fest:attributes>
+</div>
 ```
 
 ## Управляющие конструкции
