@@ -220,6 +220,7 @@
         var name2 = 'span';
         var name3 = 'br';
         var nameX2 = function() {};
+        var name5 = 'span';
     } catch (e) {
         __fest_log_error(e.message);
     }
@@ -334,6 +335,125 @@
     __fest_buf += ("<" + __fest_element);
     __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
     __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        __fest_element = (name5);
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        __fest_element = "d" + ((true) ? 'i' : '') + "v";
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        __fest_element = "span";
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">login");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        var variable = 'table';
+    } catch (e) {
+        __fest_log_error(e.message);
+    }
+    try {
+        __fest_element = (variable);
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">table code");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        __fest_element = "d" + ((true) ? 'i' : 'a') + "v";
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">expr code");
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    if (!(__fest_element in __fest_short_tags)) {
+        __fest_buf += ("</" + __fest_element + ">")
+    }
+    __fest_element_stack.pop();
+    try {
+        __fest_element = (variable2);
+        if (typeof __fest_element !== "string") {
+            __fest_log_error("Element name must be a string");
+            __fest_element = "div"
+        }
+    } catch (e) {
+        __fest_element = "div";
+        __fest_log_error(e.message);
+    }
+    __fest_element_stack.push(__fest_element);
+    __fest_buf += ("<" + __fest_element);
+    __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
+    __fest_buf += (__fest_element in __fest_short_tags ? "/>" : ">div code");
     __fest_element = __fest_element_stack[__fest_element_stack.length - 1];
     if (!(__fest_element in __fest_short_tags)) {
         __fest_buf += ("</" + __fest_element + ">")
